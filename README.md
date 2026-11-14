@@ -1,6 +1,6 @@
 # Callside
 
-Callside is a small, quiet copilot for a live cold call. It gives a caller an eight stage structure, common prospect reactions, a place to capture the prospect's words, a next step, and a recent call list. It does not record audio. A Gemini 3.5 Flash powered follow-up idea is optional; the flow works without an LLM key.
+Callside is a small, quiet copilot for the first call a Meridian Growth Partners caller makes to a business leader. It guides the caller through the assignment's eight stages, shows likely prospect reactions, captures the prospect's words at the need stage, and saves an outcome and next action. It does not record audio. A Gemini 3.5 Flash powered follow-up question is optional; the core flow works without an LLM key.
 
 ## Run locally
 
@@ -39,9 +39,10 @@ Never add the Supabase service role key or Gemini key to Vercel's `VITE_` variab
 - [ ] Six minute screen and camera walkthrough uploaded to Drive with link access
 - [ ] Paste GitHub URL into assignment form, and Vercel, health, and video links into the WhatsApp message
 
-### Decisions from the brief
+## Decisions from the readings and calls
 
-- The guide covers the eight stages shown in the assignment's required reading: opening, permission, context, discovery, impact, fit, objections, and next step. The attached screenshots did not include the linked stage guide, reference screen, or 100 fictionalized transcripts, so the prompts and response examples here are a starter synthesis from the brief and common call patterns. Replace them with findings from those supplied materials before presenting the work as transcript informed.
-- The stage is always visible, with purpose, a flexible opening prompt, common prospect reactions, a gentle tip, outcome controls, and an optional place for verbatim prospect language. This keeps glanceable guidance ahead of dense notes.
-- Calls are saved on each stage transition, and the final screen is the call history with outcome and reached stage. A missed call can be reopened and continued.
-- Gemini 3.5 Flash is called only when the caller requests a follow-up idea. Core functionality never depends on the model. The model is on Google's free tier according to the current [Gemini API pricing page](https://ai.google.dev/gemini-api/docs/pricing/).
+- The guide follows the required order exactly: Opening, Purpose, Permission, Their business, Their need (in their words), Objection, Next step, and Close.
+- I reviewed the 100 supplied transcripts. Calls frequently turn on basic context: who is calling, why this company, what Meridian does, and how the caller found the number. People also correct outdated role or company information, ask for a later time, request an email or WhatsApp report, or decline. The examples and four quick outcome taps at each stage reflect those patterns and are paraphrased rather than copied from the transcripts.
+- The calls have many distinct end states. The post-call selector keeps “agreed to receive a report,” “next step agreed,” “interested,” and “follow-up” separate from “not interested,” “do not call,” “wrong person,” “moved company,” “call again,” and “not logged.” This helps avoid recording politeness as buying intent.
+- A caller can glance at one purpose line, likely reactions, and four stage-specific taps. Only the need stage has a free-text box, for the prospect's exact words. Stages save as the caller moves forward; ending early still leads to a closeout where they can record a true outcome and next action.
+- The LLM makes one optional, bounded contribution: a short follow-up question based on the stage and any note typed at that stage. The key stays in Render, and the screen calls the backend. Core call guidance does not depend on Gemini. Google's current [Gemini API pricing](https://ai.google.dev/gemini-api/docs/pricing/) lists Gemini 3.5 Flash on a free tier.
