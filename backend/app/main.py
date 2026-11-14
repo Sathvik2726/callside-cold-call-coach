@@ -119,7 +119,7 @@ async def coach(body: dict[str, str]):
     if not key: return {"available":False, "message":"Add GEMINI_API_KEY to enable the call coach."}
     prompt = f"You are a concise, ethical cold-call coach. Given stage, prospect words, and context, suggest one short follow-up question. Never pressure or invent claims.\nStage: {body.get('stage','')}\nProspect: {body.get('prospect_words','')}\nContext: {body.get('context','')}"
     async with httpx.AsyncClient(timeout=12) as client:
-        response = await client.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}", json={"contents":[{"parts":[{"text":prompt}]}]})
+        response = await client.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key={key}", json={"contents":[{"parts":[{"text":prompt}]}]})
     if response.is_error: raise HTTPException(502, "Coach provider is temporarily unavailable")
     data = response.json()
     return {"available":True, "suggestion":data["candidates"][0]["content"]["parts"][0]["text"]}
